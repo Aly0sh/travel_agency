@@ -8,7 +8,7 @@ import java.sql.Date;
 
 @Entity
 @Table(name = "trips_numbers")
-public class trips_numbers {
+public class Trips_numbers {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
@@ -41,16 +41,15 @@ public class trips_numbers {
     @Column(name = "registration_date")
     private java.sql.Date registration_date;
 
-    @NotNull
-    @JoinColumn(name = "trip_number")
-    @ManyToOne
-    private trip trip_number;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn
+    private Trip trip;
 
-    @NotNull
-    @ManyToOne
-    private rooms room;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn
+    private Rooms room;
 
-    public trips_numbers(){}
+    public Trips_numbers(){}
 
     public Long getId() {
         return id;
@@ -132,19 +131,5 @@ public class trips_numbers {
         this.registration_date = registration_date;
     }
 
-    public trip getTrip_number() {
-        return trip_number;
-    }
 
-    public void setTrip_number(trip trip_number) {
-        this.trip_number = trip_number;
-    }
-
-    public rooms getRoom() {
-        return room;
-    }
-
-    public void setRoom(rooms room) {
-        this.room = room;
-    }
 }

@@ -4,19 +4,18 @@ import com.sun.istack.NotNull;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "trips_tickets")
-public class trips_tickets {
+public class Trips_tickets {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private Long id;
 
-    @NotNull
-    @JoinColumn(name = "place")
-    @ManyToOne
-    private event_tickets place;
+    @Column
+    private Integer place;
 
     @Column(name = "city")
     private String city;
@@ -45,12 +44,15 @@ public class trips_tickets {
     @Column(name = "registration_date")
     private Date registration_date;
 
-    @NotNull
-    @JoinColumn(name = "trip_number")
-    @ManyToOne
-    private trip trip_number;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "trip")
+    private Trip trip;
 
-    public trips_tickets(){}
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "event_tickets")
+    private List<Event_tickets> event_tickets;
+
+    public Trips_tickets(){}
 
     public Long getId() {
         return id;
@@ -60,11 +62,11 @@ public class trips_tickets {
         this.id = id;
     }
 
-    public event_tickets getPlace() {
+    public Integer getPlace() {
         return place;
     }
 
-    public void setPlace(event_tickets place) {
+    public void setPlace(Integer place) {
         this.place = place;
     }
 
@@ -140,11 +142,4 @@ public class trips_tickets {
         this.registration_date = registration_date;
     }
 
-    public trip getTrip_number() {
-        return trip_number;
-    }
-
-    public void setTrip_number(trip trip_number) {
-        this.trip_number = trip_number;
-    }
 }

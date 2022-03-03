@@ -1,10 +1,11 @@
 package org.example.entities;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "client")
-public class client {
+public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
@@ -13,8 +14,8 @@ public class client {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "address")
-    private String address;
+    @Column
+    private Integer address;
 
     @Column(name = "client_number")
     private Integer client_number;
@@ -22,7 +23,11 @@ public class client {
     @Column(name = "phone")
     private Integer phone;
 
-    public client(){}
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "agreement")
+    private Agreement agreement;
+
+    public Client(){}
 
     public Long getId() {
         return id;
@@ -40,11 +45,11 @@ public class client {
         this.name = name;
     }
 
-    public String getAddress() {
+    public Integer getAddress() {
         return address;
     }
 
-    public void setAddress(String address) {
+    public void setAddress(Integer address) {
         this.address = address;
     }
 

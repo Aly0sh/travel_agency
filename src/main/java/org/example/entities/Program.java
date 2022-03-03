@@ -1,10 +1,11 @@
 package org.example.entities;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "program")
-public class program {
+public class Program {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
@@ -16,7 +17,10 @@ public class program {
     @Column(name = "description")
     private String description;
 
-    public program(){}
+    @OneToMany(mappedBy = "program_number", cascade = CascadeType.ALL)
+    private List<Tour> tour;
+
+    public Program(){}
 
     public Long getId() {
         return id;

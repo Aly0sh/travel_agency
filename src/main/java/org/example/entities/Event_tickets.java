@@ -7,7 +7,7 @@ import java.sql.Date;
 
 @Entity
 @Table(name = "event_tickets")
-public class event_tickets {
+public class Event_tickets {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
@@ -16,26 +16,24 @@ public class event_tickets {
     @Column(name = "place")
     private Integer place;
 
-    @NotNull
-    @JoinColumn(name = "city")
-    @ManyToOne
-    private events city;
+    @Column
+    private String city;
 
     @Column(name = "start_date")
     private Date start_date;
 
-    @NotNull
-    @JoinColumn(name = "venue")
-    @ManyToOne
-    private events venue;
+    @Column
+    private String venue;
 
-    @NotNull
-    @JoinColumn(name = "start_time")
-    @ManyToOne
-    private events start_time;
+    @Column
+    private Date start_time;
 
-    public event_tickets(){}
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "event")
+    private Events event;
 
+
+    public Event_tickets(){}
 
     public Long getId() {
         return id;
@@ -53,11 +51,11 @@ public class event_tickets {
         this.place = place;
     }
 
-    public events getCity() {
+    public String getCity() {
         return city;
     }
 
-    public void setCity(events city) {
+    public void setCity(String city) {
         this.city = city;
     }
 
@@ -69,19 +67,19 @@ public class event_tickets {
         this.start_date = start_date;
     }
 
-    public events getVenue() {
+    public String getVenue() {
         return venue;
     }
 
-    public void setVenue(events venue) {
+    public void setVenue(String venue) {
         this.venue = venue;
     }
 
-    public events getStart_time() {
+    public Date getStart_time() {
         return start_time;
     }
 
-    public void setStart_time(events start_time) {
+    public void setStart_time(Date start_time) {
         this.start_time = start_time;
     }
 }

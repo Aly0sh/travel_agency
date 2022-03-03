@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "tourist")
-public class tourist {
+public class Tourist {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
@@ -22,7 +22,7 @@ public class tourist {
     @Column(name = "address")
     private String address;
 
-    public tourist(){}
+    public Tourist(){}
 
     public Long getId() {
         return id;

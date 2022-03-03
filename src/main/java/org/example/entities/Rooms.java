@@ -7,29 +7,23 @@ import java.util.Date;
 
 @Entity
 @Table(name = "rooms")
-public class rooms {
+public class Rooms {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private Long id;
 
-    @NotNull
-    @JoinColumn(name = "city")
-    @ManyToOne
-    private hotel city;
+    @Column
+    private String city;
 
-    @NotNull
-    @JoinColumn(name = "name")
-    @ManyToOne
-    private hotel name;
+    @Column
+    private String name;
 
     @Column(name = "arrival_date")
     private Date arrival_date;
 
-    @NotNull
-    @JoinColumn(name = "category")
-    @ManyToOne
-    private category category;
+    @Column
+    private String category;
 
     @Column(name = "place")
     private Integer place;
@@ -37,7 +31,15 @@ public class rooms {
     @Column(name = "departure_date")
     private Date departure_date;
 
-    public rooms(){}
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn
+    private Category room_category;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "hotel")
+    private Hotel hotel;
+
+    public Rooms(){}
 
     public Long getId() {
         return id;
@@ -47,19 +49,19 @@ public class rooms {
         this.id = id;
     }
 
-    public hotel getCity() {
+    public String getCity() {
         return city;
     }
 
-    public void setCity(hotel city) {
+    public void setCity(String city) {
         this.city = city;
     }
 
-    public hotel getName() {
+    public String getName() {
         return name;
     }
 
-    public void setName(hotel name) {
+    public void setName(String name) {
         this.name = name;
     }
 
@@ -71,11 +73,11 @@ public class rooms {
         this.arrival_date = arrival_date;
     }
 
-    public org.example.entities.category getCategory() {
+    public String getCategory() {
         return category;
     }
 
-    public void setCategory(org.example.entities.category category) {
+    public void setCategory(String category) {
         this.category = category;
     }
 

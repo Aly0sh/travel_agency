@@ -7,25 +7,24 @@ import java.sql.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "tour_tasks")
-public class tour_tasks {
+@Table(name = "hotel")
+public class Hotel {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "task_number")
-    private Integer task_number;
+    @Column(name = "city")
+    private String city;
 
-    @NotNull
-    @JoinColumn(name = "passport_id")
-    @OneToMany(cascade = CascadeType.ALL)
-    private List <employees> passport_id;
+    @Column(name = "name")
+    private String name;
 
-    @NotNull
-    @JoinColumn(name = "tour_number")
-    @ManyToOne(cascade = CascadeType.ALL)
-    private tour tour_number;
+    @Column
+    private Integer tour_number;
+
+    @Column
+    private String klass;
 
     @Column(name = "country")
     private String country;
@@ -42,16 +41,18 @@ public class tour_tasks {
     @Column(name = "program_number")
     private Integer program_number;
 
-    @Column(name = "description")
-    private String description;
+    @ManyToMany
+    @JoinColumn(name = "tour")
+    private List<Tour> tour;
 
-    @Column(name = "deadline")
-    private Date deadline;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "hotel_klass")
+    private Hotel_klass hotel_klass;
 
-    @Column(name = "status")
-    private byte[] status;
+    @OneToMany(mappedBy = "hotel", cascade = CascadeType.ALL)
+    private List<Rooms> rooms;
 
-    public tour_tasks(){}
+    public Hotel(){}
 
     public Long getId() {
         return id;
@@ -61,28 +62,36 @@ public class tour_tasks {
         this.id = id;
     }
 
-    public Integer getTask_number() {
-        return task_number;
+    public String getCity() {
+        return city;
     }
 
-    public void setTask_number(Integer task_number) {
-        this.task_number = task_number;
+    public void setCity(String city) {
+        this.city = city;
     }
 
-    public List<employees> getPassport_id() {
-        return passport_id;
+    public String getName() {
+        return name;
     }
 
-    public void setPassport_id(List<employees> passport_id) {
-        this.passport_id = passport_id;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public tour getTour_number() {
+    public Integer getTour_number() {
         return tour_number;
     }
 
-    public void setTour_number(tour tour_number) {
+    public void setTour_number(Integer tour_number) {
         this.tour_number = tour_number;
+    }
+
+    public String getKlass() {
+        return klass;
+    }
+
+    public void setKlass(String klass) {
+        this.klass = klass;
     }
 
     public String getCountry() {
@@ -123,29 +132,5 @@ public class tour_tasks {
 
     public void setProgram_number(Integer program_number) {
         this.program_number = program_number;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Date getDeadline() {
-        return deadline;
-    }
-
-    public void setDeadline(Date deadline) {
-        this.deadline = deadline;
-    }
-
-    public byte[] getStatus() {
-        return status;
-    }
-
-    public void setStatus(byte[] status) {
-        this.status = status;
     }
 }

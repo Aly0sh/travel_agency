@@ -1,27 +1,30 @@
 package org.example.entities;
 
 import com.sun.istack.NotNull;
+import org.aspectj.weaver.ast.Or;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "tour")
-public class tour {
+public class Tour {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "tour_number")
-    private Long tour_number;
+    @Column(name = "id")
+    private Long id;
 
-    @NotNull
+    @Column
+    private Integer tour_number;
+
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "tour_type")
-    @ManyToOne(cascade = CascadeType.ALL)
-    private tour_type tour_type;
+    private Tour_type tour_type;
 
-    @NotNull
-    @JoinColumn(name = "country")
     @ManyToOne(cascade = CascadeType.ALL)
-    private country country;
+    @JoinColumn(name = "country")
+    private Country country;
 
     @Column(name = "start_date")
     private Date start_date;
@@ -29,10 +32,9 @@ public class tour {
     @Column(name = "end_date")
     private Date end_date;
 
-    @NotNull
-    @JoinColumn(name = "program_number")
     @ManyToOne(cascade = CascadeType.ALL)
-    private program program_number;
+    @JoinColumn(name = "program_number")
+    private Program program_number;
 
     @Column(name = "name")
     private String name;
@@ -40,29 +42,52 @@ public class tour {
     @Column(name = "status")
     private String status;
 
-    public tour(){}
+    @OneToMany(mappedBy = "tour")
+    private List<Agreement> agreements;
 
-    public Long getTour_number() {
+    @OneToMany(mappedBy = "tour")
+    private List<Tour_flights> tour_flights;
+
+    @OneToMany(mappedBy = "tour", cascade = CascadeType.ALL)
+    private List<Events> events;
+
+    @OneToMany(mappedBy = "tour", cascade = CascadeType.ALL)
+    private List<Tour_tasks> tour_tasks;
+
+    @OneToMany(mappedBy = "tour", cascade = CascadeType.ALL)
+    private List<Order> orders;
+
+    public Tour(){}
+
+    public Integer getTour_number() {
         return tour_number;
     }
 
-    public void setTour_number(Long tour_number) {
+    public void setTour_number(Integer tour_number) {
         this.tour_number = tour_number;
     }
 
-    public org.example.entities.tour_type getTour_type() {
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Tour_type getTour_type() {
         return tour_type;
     }
 
-    public void setTour_type(org.example.entities.tour_type tour_type) {
+    public void setTour_type(Tour_type tour_type) {
         this.tour_type = tour_type;
     }
 
-    public org.example.entities.country getCountry() {
+    public Country getCountry() {
         return country;
     }
 
-    public void setCountry(org.example.entities.country country) {
+    public void setCountry(Country country) {
         this.country = country;
     }
 
@@ -82,11 +107,11 @@ public class tour {
         this.end_date = end_date;
     }
 
-    public program getProgram_number() {
+    public Program getProgram_number() {
         return program_number;
     }
 
-    public void setProgram_number(program program_number) {
+    public void setProgram_number(Program program_number) {
         this.program_number = program_number;
     }
 

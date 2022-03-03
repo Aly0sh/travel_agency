@@ -2,21 +2,24 @@ package org.example.entities;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "tour_flights")
-public class tour_flights {
+public class Tour_flights {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column
+    private Long id;
+
     @Column(name = "flight_code")
-    private Long flight_code;
+    private Integer flight_code;
 
     @Column(name = "air_company")
     private String air_company;
 
-    @JoinColumn(name = "tour_number")
-    @ManyToOne(cascade = CascadeType.ALL)
-    private tour tour_number;
+    @Column
+    private Integer tour_number;
 
     @Column(name = "departure_date")
     private Date departure_date;
@@ -48,13 +51,28 @@ public class tour_flights {
     @Column(name = "program_number")
     private Integer program_number;
 
-    public tour_flights(){}
+    @ManyToOne
+    @JoinColumn
+    private Tour tour;
 
-    public Long getFlight_code() {
+    @OneToMany(mappedBy = "tour_flight", cascade = CascadeType.ALL)
+    private List<Air_tickets> air_tickets;
+
+    public Tour_flights(){}
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Integer getFlight_code() {
         return flight_code;
     }
 
-    public void setFlight_code(Long flight_code) {
+    public void setFlight_code(Integer flight_code) {
         this.flight_code = flight_code;
     }
 
@@ -66,11 +84,11 @@ public class tour_flights {
         this.air_company = air_company;
     }
 
-    public tour getTour_number() {
+    public Integer getTour_number() {
         return tour_number;
     }
 
-    public void setTour_number(tour tour_number) {
+    public void setTour_number(Integer tour_number) {
         this.tour_number = tour_number;
     }
 

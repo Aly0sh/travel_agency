@@ -3,10 +3,11 @@ package org.example.entities;
 import com.sun.istack.NotNull;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "Air_tickets")
-public class air_tickets {
+public class Air_tickets {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -16,20 +17,27 @@ public class air_tickets {
     @Column(name = "place")
     private Integer place;
 
-    @NotNull
-    @JoinColumn(name = "flight_code")
-    @ManyToOne
-    private tour_flights flight_code;
+    @Column
+    private Integer flight_code;
 
     @Column(name = "air_company")
     private String air_company;
 
-    @NotNull
-    @JoinColumn(name = "klass")
-    @ManyToOne
-    private air_klass klass;
+    @Column
+    private String klass;
 
-    public air_tickets(){}
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn
+    private Air_klass air_klass;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn
+    private Tour_flights tour_flight;
+
+    @OneToMany(mappedBy = "air_tickets", cascade = CascadeType.ALL)
+    private List<Air_tickets_trips> air_tickets_trips;
+
+    public Air_tickets(){}
 
     public Long getId() {
         return id;
@@ -47,11 +55,11 @@ public class air_tickets {
         this.place = place;
     }
 
-    public tour_flights getFlight_code() {
+    public Integer getFlight_code() {
         return flight_code;
     }
 
-    public void setFlight_code(tour_flights flight_code) {
+    public void setFlight_code(Integer flight_code) {
         this.flight_code = flight_code;
     }
 
@@ -63,11 +71,11 @@ public class air_tickets {
         this.air_company = air_company;
     }
 
-    public air_klass getKlass() {
+    public String getKlass() {
         return klass;
     }
 
-    public void setKlass(air_klass klass) {
+    public void setKlass(String klass) {
         this.klass = klass;
     }
 }

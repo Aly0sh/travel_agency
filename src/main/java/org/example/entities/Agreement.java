@@ -4,28 +4,27 @@ import com.sun.istack.NotNull;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "agreement ")
-public class agreement {
+public class Agreement {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
-    private Long agreement_number;
+    private Long id;
 
-    @NotNull
-    @JoinColumn(name = "name")
-    @ManyToOne
-    private client name;
+    @Column
+    private Integer agreement_number;
 
-    @NotNull
-    @JoinColumn(name = "address")
-    @ManyToOne
-    private client address;
+    @Column
+    private String name;
 
-    @JoinColumn(name = "tour_number")
-    @ManyToOne
-    private tour tour_number;
+    @Column
+    private String address;
+
+    @Column
+    private Integer tour_number;
 
     @Column(name = "registration_date")
     private Date registration_date;
@@ -45,29 +44,55 @@ public class agreement {
     @Column(name = "program_number")
     private Integer program_number;
 
-    public agreement(){};
+    @ManyToOne
+    @JoinColumn(name = "tour_id")
+    private Tour tour;
 
-    public client getName() {
+    @OneToMany(mappedBy = "agreement", cascade = CascadeType.ALL)
+    private List<Client> clients;
+
+    @OneToMany(mappedBy = "agreement_id", cascade = CascadeType.ALL)
+    private List<Trip> trips;
+
+    public Agreement(){};
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Integer getAgreement_number() {
+        return agreement_number;
+    }
+
+    public void setAgreement_number(Integer agreement_number) {
+        this.agreement_number = agreement_number;
+    }
+
+    public String getName() {
         return name;
     }
 
-    public void setName(client name) {
+    public void setName(String name) {
         this.name = name;
     }
 
-    public client getAddress() {
+    public String getAddress() {
         return address;
     }
 
-    public void setAddress(client address) {
+    public void setAddress(String address) {
         this.address = address;
     }
 
-    public tour getTour_number() {
+    public Integer getTour_number() {
         return tour_number;
     }
 
-    public void setTour_number(tour tour_number) {
+    public void setTour_number(Integer tour_number) {
         this.tour_number = tour_number;
     }
 
@@ -77,14 +102,6 @@ public class agreement {
 
     public void setRegistration_date(Date registration_date) {
         this.registration_date = registration_date;
-    }
-
-    public Long getAgreement_number() {
-        return agreement_number;
-    }
-
-    public void setAgreement_number(Long agreement_number) {
-        this.agreement_number = agreement_number;
     }
 
     public String getCountry() {

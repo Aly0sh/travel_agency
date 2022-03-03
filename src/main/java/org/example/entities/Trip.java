@@ -1,22 +1,22 @@
 package org.example.entities;
 
-import com.sun.istack.NotNull;
-
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "trip")
-public class trip {
+public class Trip {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
-    private Long trip_number;
+    private Long id;
 
-    @NotNull
-    @JoinColumn(name = "passport_id")
-    @ManyToOne
-    private tourist passport_id;
+    @Column
+    private Integer trip_number;
+
+    @Column
+    private Integer passport_id;
 
     @Column(name = "name")
     private String name;
@@ -30,21 +30,46 @@ public class trip {
     @Column(name = "registration_date")
     private java.sql.Date registration_date;
 
-    public trip(){}
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "tourist")
+    private Tourist tourist;
 
-    public Long getTrip_number() {
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "agreement")
+    private Agreement agreement_id;
+
+    @OneToMany(mappedBy = "trip", cascade = CascadeType.ALL)
+    private List<Trips_tickets> trips_tickets;
+
+    @OneToMany(mappedBy = "trip", cascade = CascadeType.ALL)
+    private List<Trips_numbers> trips_numbers;
+
+    @OneToMany(mappedBy = "trip", cascade = CascadeType.ALL)
+    private List<Air_tickets_trips> air_tickets_trips;
+
+    public Trip(){}
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Integer getTrip_number() {
         return trip_number;
     }
 
-    public void setTrip_number(Long trip_number) {
+    public void setTrip_number(Integer trip_number) {
         this.trip_number = trip_number;
     }
 
-    public tourist getPassport_id() {
+    public Integer getPassport_id() {
         return passport_id;
     }
 
-    public void setPassport_id(tourist passport_id) {
+    public void setPassport_id(Integer passport_id) {
         this.passport_id = passport_id;
     }
 

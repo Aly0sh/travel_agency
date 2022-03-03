@@ -4,10 +4,11 @@ import com.sun.istack.NotNull;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.List;
 
 @Entity
-@Table(name = "hotel")
-public class hotel {
+@Table(name = "events")
+public class Events {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
@@ -16,17 +17,20 @@ public class hotel {
     @Column(name = "city")
     private String city;
 
+    @Column(name = "venue")
+    private String venue;
+
+    @Column(name = "start_time")
+    private Date start_time;
+
+    @Column(name = "start_date")
+    private Date start_date;
+
+    @Column
+    private Integer tour_number;
+
     @Column(name = "name")
     private String name;
-
-    @JoinColumn(name = "tour_number")
-    @ManyToOne
-    private tour tour_number;
-
-    @NotNull
-    @JoinColumn(name = "klass")
-    @ManyToOne
-    private hotel_klass klass;
 
     @Column(name = "country")
     private String country;
@@ -34,16 +38,20 @@ public class hotel {
     @Column(name = "tour_type")
     private String tour_type;
 
-    @Column(name = "start_date")
-    private Date start_date;
-
     @Column(name = "end_date")
     private Date end_date;
 
     @Column(name = "program_number")
     private Integer program_number;
 
-    public hotel(){}
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn
+    private Tour tour;
+
+    @OneToMany(mappedBy = "event", cascade = CascadeType.ALL)
+    private List<Event_tickets> event_tickets;
+
+    public Events(){}
 
     public Long getId() {
         return id;
@@ -61,28 +69,44 @@ public class hotel {
         this.city = city;
     }
 
+    public String getVenue() {
+        return venue;
+    }
+
+    public void setVenue(String venue) {
+        this.venue = venue;
+    }
+
+    public Date getStart_time() {
+        return start_time;
+    }
+
+    public void setStart_time(Date start_time) {
+        this.start_time = start_time;
+    }
+
+    public Date getStart_date() {
+        return start_date;
+    }
+
+    public void setStart_date(Date start_date) {
+        this.start_date = start_date;
+    }
+
+    public Integer getTour_number() {
+        return tour_number;
+    }
+
+    public void setTour_number(Integer tour_number) {
+        this.tour_number = tour_number;
+    }
+
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public tour getTour_number() {
-        return tour_number;
-    }
-
-    public void setTour_number(tour tour_number) {
-        this.tour_number = tour_number;
-    }
-
-    public hotel_klass getKlass() {
-        return klass;
-    }
-
-    public void setKlass(hotel_klass klass) {
-        this.klass = klass;
     }
 
     public String getCountry() {
@@ -99,14 +123,6 @@ public class hotel {
 
     public void setTour_type(String tour_type) {
         this.tour_type = tour_type;
-    }
-
-    public Date getStart_date() {
-        return start_date;
-    }
-
-    public void setStart_date(Date start_date) {
-        this.start_date = start_date;
     }
 
     public Date getEnd_date() {

@@ -1,10 +1,12 @@
 package org.example.entities;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "tour_type")
-public class tour_type {
+public class Tour_type {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
@@ -13,10 +15,20 @@ public class tour_type {
     @Column(name = "tour_type")
     private String tour_type;
 
-    public tour_type(){}
+    @OneToMany(mappedBy = "tour_type", cascade = CascadeType.ALL)
+    private List<Tour> tour;
+
+    public Tour_type(){}
 
     public Long getId() {
         return id;
+    }
+
+    public void addTour(Tour tour){
+        if(this.tour == null){
+            this.tour = new ArrayList<>();
+        }
+        this.tour.add(tour);
     }
 
     public void setId(Long id) {

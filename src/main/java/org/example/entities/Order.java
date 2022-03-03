@@ -5,33 +5,20 @@ import com.sun.istack.NotNull;
 import javax.persistence.*;
 import java.sql.Date;
 
+
 @Entity
-@Table(name = "events")
-public class events {
+@Table(name = "orders")
+public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "city")
-    private String city;
+    @Column
+    private Integer tour_number;
 
-    @Column(name = "venue")
-    private String venue;
-
-    @Column(name = "start_time")
-    private Date start_time;
-
-    @Column(name = "start_date")
-    private Date start_date;
-
-    @NotNull
-    @JoinColumn(name = "tour_number")
-    @ManyToOne
-    private tour tour_number;
-
-    @Column(name = "name")
-    private String name;
+    @Column
+    private Integer passport_id;
 
     @Column(name = "country")
     private String country;
@@ -39,13 +26,27 @@ public class events {
     @Column(name = "tour_type")
     private String tour_type;
 
+    @Column(name = "start_date")
+    private Date start_date;
+
     @Column(name = "end_date")
     private Date end_date;
 
     @Column(name = "program_number")
     private Integer program_number;
 
-    public events(){}
+    @Column(name = "order_number")
+    private Integer order_number;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn
+    private Tour tour;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn
+    private Employees employees;
+
+    public Order(){}
 
     public Long getId() {
         return id;
@@ -55,52 +56,20 @@ public class events {
         this.id = id;
     }
 
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getVenue() {
-        return venue;
-    }
-
-    public void setVenue(String venue) {
-        this.venue = venue;
-    }
-
-    public Date getStart_time() {
-        return start_time;
-    }
-
-    public void setStart_time(Date start_time) {
-        this.start_time = start_time;
-    }
-
-    public Date getStart_date() {
-        return start_date;
-    }
-
-    public void setStart_date(Date start_date) {
-        this.start_date = start_date;
-    }
-
-    public tour getTour_number() {
+    public Integer getTour_number() {
         return tour_number;
     }
 
-    public void setTour_number(tour tour_number) {
+    public void setTour_number(Integer tour_number) {
         this.tour_number = tour_number;
     }
 
-    public String getName() {
-        return name;
+    public Integer getPassport_id() {
+        return passport_id;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setPassport_id(Integer passport_id) {
+        this.passport_id = passport_id;
     }
 
     public String getCountry() {
@@ -119,6 +88,14 @@ public class events {
         this.tour_type = tour_type;
     }
 
+    public Date getStart_date() {
+        return start_date;
+    }
+
+    public void setStart_date(Date start_date) {
+        this.start_date = start_date;
+    }
+
     public Date getEnd_date() {
         return end_date;
     }
@@ -133,5 +110,13 @@ public class events {
 
     public void setProgram_number(Integer program_number) {
         this.program_number = program_number;
+    }
+
+    public Integer getOrder_number() {
+        return order_number;
+    }
+
+    public void setOrder_number(Integer order_number) {
+        this.order_number = order_number;
     }
 }
