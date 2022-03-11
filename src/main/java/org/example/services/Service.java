@@ -1,6 +1,5 @@
 package org.example.services;
 
-import org.example.entities.Position;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 

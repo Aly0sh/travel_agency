@@ -1,10 +1,11 @@
 package org.example;
 
-import org.example.entities.*;
+import org.example.models.*;
 import org.example.services.*;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+import java.sql.Date;
 
 
 public class App
@@ -70,6 +71,9 @@ public class App
         programService.update(4, "Программа включает в себя поездку по достопремечательностям", 18L);
         programService.create(5, "Программа ни о чем");
         programService.delete(19L);
+        tourService tourController = new tourService(factory);
+        tourController.create(1, tourTypeService.read(11L), countryService.read(9L), Date.valueOf("2020-06-12"), Date.valueOf("2020-07-12"), programService.read(17L), "Тур по выживанию на горах", "Завершен");
+
         factory.close();
     }
 }

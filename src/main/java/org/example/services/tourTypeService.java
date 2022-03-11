@@ -1,7 +1,6 @@
 package org.example.services;
 
-import org.example.entities.Position;
-import org.example.entities.Tour_type;
+import org.example.models.Tour_type;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
