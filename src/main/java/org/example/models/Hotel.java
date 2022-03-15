@@ -39,9 +39,9 @@ public class Hotel {
     @Column(name = "program_number")
     private Integer program_number;
 
-    @ManyToMany
+    @ManyToOne
     @JoinColumn(name = "tour")
-    private List<Tour> tour;
+    private Tour tour;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "hotel_klass")
@@ -70,6 +70,22 @@ public class Hotel {
 
     public String getName() {
         return name;
+    }
+
+    public Tour getTour() {
+        return tour;
+    }
+
+    public void setTour(Tour tour) {
+        this.tour = tour;
+    }
+
+    public Hotel_klass getHotel_klass() {
+        return hotel_klass;
+    }
+
+    public void setHotel_klass(Hotel_klass hotel_klass) {
+        this.hotel_klass = hotel_klass;
     }
 
     public void setName(String name) {

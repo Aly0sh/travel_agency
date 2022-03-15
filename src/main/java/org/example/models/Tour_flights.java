@@ -2,6 +2,7 @@ package org.example.models;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.sql.Time;
 import java.util.List;
 
 @Entity
@@ -25,7 +26,7 @@ public class Tour_flights {
     private Date departure_date;
 
     @Column(name = "departure_time")
-    private Date departure_time;
+    private Time departure_time;
 
     @Column(name = "arrival_city")
     private String arrival_city;
@@ -84,6 +85,14 @@ public class Tour_flights {
         this.air_company = air_company;
     }
 
+    public Tour getTour() {
+        return tour;
+    }
+
+    public void setTour(Tour tour) {
+        this.tour = tour;
+    }
+
     public Integer getTour_number() {
         return tour_number;
     }
@@ -100,11 +109,11 @@ public class Tour_flights {
         this.departure_date = departure_date;
     }
 
-    public Date getDeparture_time() {
+    public Time getDeparture_time() {
         return departure_time;
     }
 
-    public void setDeparture_time(Date departure_time) {
+    public void setDeparture_time(Time departure_time) {
         this.departure_time = departure_time;
     }
 

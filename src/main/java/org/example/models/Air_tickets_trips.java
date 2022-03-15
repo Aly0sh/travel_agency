@@ -50,6 +50,22 @@ public class Air_tickets_trips {
 
     public Air_tickets_trips(){};
 
+    public Air_tickets getAir_tickets() {
+        return air_tickets;
+    }
+
+    public void setAir_tickets(Air_tickets air_tickets) {
+        this.air_tickets = air_tickets;
+    }
+
+    public Trip getTrip() {
+        return trip;
+    }
+
+    public void setTrip(Trip trip) {
+        this.trip = trip;
+    }
+
     public Long getId() {
         return id;
     }

@@ -2,6 +2,7 @@ package org.example.models;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.sql.Time;
 import java.util.List;
 
 @Entity
@@ -25,7 +26,7 @@ public class Trips_tickets {
     private String venue;
 
     @Column(name = "start_time")
-    private Date start_time;
+    private Time start_time;
 
     @Column(name = "passport_id")
     private Integer passport_id;
@@ -46,9 +47,9 @@ public class Trips_tickets {
     @JoinColumn(name = "trip")
     private Trip trip;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "event_tickets")
-    private List<Event_tickets> event_tickets;
+    private Event_tickets event_tickets;
 
     public Trips_tickets(){}
 
@@ -76,6 +77,22 @@ public class Trips_tickets {
         this.city = city;
     }
 
+    public Trip getTrip() {
+        return trip;
+    }
+
+    public void setTrip(Trip trip) {
+        this.trip = trip;
+    }
+
+    public Event_tickets getEvent_tickets() {
+        return event_tickets;
+    }
+
+    public void setEvent_tickets(Event_tickets event_tickets) {
+        this.event_tickets = event_tickets;
+    }
+
     public Date getStart_date() {
         return start_date;
     }
@@ -92,11 +109,11 @@ public class Trips_tickets {
         this.venue = venue;
     }
 
-    public Date getStart_time() {
+    public Time getStart_time() {
         return start_time;
     }
 
-    public void setStart_time(Date start_time) {
+    public void setStart_time(Time start_time) {
         this.start_time = start_time;
     }
 

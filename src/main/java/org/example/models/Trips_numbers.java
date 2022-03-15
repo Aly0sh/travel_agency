@@ -125,6 +125,22 @@ public class Trips_numbers {
         return registration_date;
     }
 
+    public Trip getTrip() {
+        return trip;
+    }
+
+    public void setTrip(Trip trip) {
+        this.trip = trip;
+    }
+
+    public Rooms getRoom() {
+        return room;
+    }
+
+    public void setRoom(Rooms room) {
+        this.room = room;
+    }
+
     public void setRegistration_date(Date registration_date) {
         this.registration_date = registration_date;
     }

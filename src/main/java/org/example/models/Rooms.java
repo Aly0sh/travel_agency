@@ -1,7 +1,7 @@
 package org.example.models;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.sql.Date;
 
 @Entity
 @Table(name = "rooms")
@@ -45,6 +45,22 @@ public class Rooms {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Category getRoom_category() {
+        return room_category;
+    }
+
+    public void setRoom_category(Category room_category) {
+        this.room_category = room_category;
+    }
+
+    public Hotel getHotel() {
+        return hotel;
+    }
+
+    public void setHotel(Hotel hotel) {
+        this.hotel = hotel;
     }
 
     public String getCity() {

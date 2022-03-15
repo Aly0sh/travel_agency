@@ -44,8 +44,6 @@ public class Trip {
     @OneToMany(mappedBy = "trip", cascade = CascadeType.ALL)
     private List<Trips_numbers> trips_numbers;
 
-    @OneToMany(mappedBy = "trip", cascade = CascadeType.ALL)
-    private List<Air_tickets_trips> air_tickets_trips;
 
     public Trip(){}
 
@@ -137,11 +135,4 @@ public class Trip {
         this.trips_numbers = trips_numbers;
     }
 
-    public List<Air_tickets_trips> getAir_tickets_trips() {
-        return air_tickets_trips;
-    }
-
-    public void setAir_tickets_trips(List<Air_tickets_trips> air_tickets_trips) {
-        this.air_tickets_trips = air_tickets_trips;
-    }
 }

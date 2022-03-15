@@ -32,8 +32,6 @@ public class Air_tickets {
     @JoinColumn
     private Tour_flights tour_flight;
 
-    @OneToMany(mappedBy = "air_tickets", cascade = CascadeType.ALL)
-    private List<Air_tickets_trips> air_tickets_trips;
 
     public Air_tickets(){}
 
@@ -47,6 +45,22 @@ public class Air_tickets {
 
     public Integer getPlace() {
         return place;
+    }
+
+    public Air_klass getAir_klass() {
+        return air_klass;
+    }
+
+    public void setAir_klass(Air_klass air_klass) {
+        this.air_klass = air_klass;
+    }
+
+    public Tour_flights getTour_flight() {
+        return tour_flight;
+    }
+
+    public void setTour_flight(Tour_flights tour_flight) {
+        this.tour_flight = tour_flight;
     }
 
     public void setPlace(Integer place) {
