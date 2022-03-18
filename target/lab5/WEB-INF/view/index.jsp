@@ -8,6 +8,7 @@
     <title>Home page</title>
 </head>
 <body>
-    <a href="/lab5_war_exploded/employee/list">Employees</a>
+    <a href="/lab5_war_exploded/employee/list">Employees</a> <br>
+    <a href="/lab5_war_exploded/position/list">Position</a> <br>
 </body>
 </html>

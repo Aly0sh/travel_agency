@@ -3,8 +3,9 @@ package org.example.services;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-public abstract class Service {
-    private final SessionFactory factory;
+public abstract class Service{
+    private SessionFactory factory;
+
     private Session session;
 
     public Service(SessionFactory sessionFactory){
