@@ -9,15 +9,18 @@
 <html>
 <head>
     <title>Update</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 </head>
 <body>
 <h2>Update position</h2>
 <br>
-<form action="/lab5_war_exploded/position/do-update/${id}">
-    <span>Position: </span>
-    <input type="text" name="position">
-    <br>
-    <button type="submit">Update</button>
+<form action="/lab5_war_exploded/position/do-update/${pos.id}">
+    <span class="fs-5">Position: </span>
+    <input type="text" class="form-control w-25" name="position" value="${pos.position}">
+    <br> <br>
+    <button type="submit" class="btn btn-primary">Update</button>
 </form>
+<br>
+<a href="/lab5_war_exploded/" class="btn btn-danger">Home page</a>
 </body>
 </html>

@@ -5,39 +5,32 @@
     <title>List</title>
 </head>
 <body>
-<h2>All employees</h2>
+<h2>All positions</h2>
 <br>
 
 <table class="table">
     <tr>
         <th>Id</th>
-        <th>Passport id</th>
-        <th>Name</th>
-        <th>Address</th>
-        <th>Position</th>
+        <th>Country</th>
         <th>Update</th>
         <th>Delete</th>
     </tr>
-    <c:forEach var="emp" items="${list}">
+    <c:forEach var="obj" items="${list}">
         <tr>
-            <td> ${emp.id}</td>
-            <td> ${emp.passport_id}</td>
-            <td> ${emp.name}</td>
-            <td> ${emp.address}</td>
-            <td> ${emp.position.getPosition()}</td>
+            <td> ${obj.id}</td>
+            <td> ${obj.country}</td>
             <td>
-                <form:form action="update/${emp.id}">
+                <form:form action="update/${obj.id}">
                     <button type="submit" class="btn btn-warning">Edit</button></form:form>
             </td>
             <td>
-                <form:form action="delete/${emp.id}"><button type="submit" class="btn btn-danger">Delete</button></form:form>
+                <form:form action="delete/${obj.id}"><button type="submit" class="btn btn-danger">Delete</button></form:form>
             </td>
         </tr>
     </c:forEach>
 </table>
 
-
-<a href="/lab5_war_exploded/employee/add" class="btn btn-primary"> Add new Employee</a>
+<a href="/lab5_war_exploded/country/add" class="btn btn-primary"> Add new Country</a>
 <br> <br>
 <a href="/lab5_war_exploded/" class="btn btn-danger">Home page</a>
 

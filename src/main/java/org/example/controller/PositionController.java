@@ -41,7 +41,7 @@ public class PositionController {
 
     @RequestMapping("/update/{id}")
     public String update(Model model, @PathVariable Long id){
-        model.addAttribute("id", id);
+        model.addAttribute("pos", positionDaoService.read(id));
         return "positionUpdate";
     }
 
