@@ -66,7 +66,8 @@ public class tourDaoService implements Dao {
         tour.setProgram_number(program_number);
         tour.setName(name);
         tour.setStatus(status);
-        session.save(tour);
+        session.clear();
+        session.update(tour);
     }
 
     public void delete(Long id){

@@ -75,7 +75,11 @@ public class TourController {
 
     @RequestMapping("/update/{id}")
     public String update(Model model, @PathVariable Long id){
-        model.addAttribute(name);
+        model.addAttribute("name", name);
+        model.addAttribute("url", url);
+        model.addAttribute("countries", countryDaoService.getAll());
+        model.addAttribute("tour_types", tourTypeDaoService.getAll());
+        model.addAttribute("programs", programDaoService.getAll());
         model.addAttribute("obj", tourDaoService.read(id));
         return fileName + "Update";
     }
@@ -83,14 +87,14 @@ public class TourController {
     @RequestMapping("do-update/{id}")
     public String doUpdate(@PathVariable Long id,
                            @RequestParam Integer tour_number,
-                           @RequestParam Tour_type tour_type,
-                           @RequestParam Country country,
+                           @RequestParam Long tour_type,
+                           @RequestParam Long country,
                            @RequestParam Date start_date,
                            @RequestParam Date end_date,
-                           @RequestParam Program program_number,
+                           @RequestParam Long program_number,
                            @RequestParam String name,
                            @RequestParam String status){
-        tourDaoService.update(tour_number, tour_type, country, start_date, end_date, program_number, name, status, id);
+        tourDaoService.update(tour_number, tourTypeDaoService.read(tour_type), countryDaoService.read(country), start_date, end_date, (Program) programDaoService.read(program_number), name, status, id);
         return redirect;
     }
 }

@@ -15,5 +15,7 @@
     <a href="/lab5_war_exploded/tour-type/list">Tour type</a> <br>
     <a href="/lab5_war_exploded/program/list">Program</a> <br>
     <a href="/lab5_war_exploded/tour/list">Tour</a> <br>
+    <a href="/lab5_war_exploded/tour-tasks/list">Tour tasks</a> <br>
+    <a href="/lab5_war_exploded/order/list">Order</a> <br>
 </body>
 </html>
