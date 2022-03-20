@@ -46,11 +46,11 @@ public class Agreement {
     @JoinColumn(name = "tour_id")
     private Tour tour;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "client")
     private Client client;
 
-    @OneToMany(mappedBy = "agreement_id", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "agreement_id", cascade = CascadeType.MERGE)
     private List<Trip> trips;
 
     public Agreement(){};

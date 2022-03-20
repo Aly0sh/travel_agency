@@ -17,5 +17,9 @@
     <a href="/lab5_war_exploded/tour/list">Tour</a> <br>
     <a href="/lab5_war_exploded/tour-tasks/list">Tour tasks</a> <br>
     <a href="/lab5_war_exploded/order/list">Order</a> <br>
+    <a href="/lab5_war_exploded/client/list">Client</a> <br>
+    <a href="/lab5_war_exploded/agreement/list">Agreement</a> <br>
+    <a href="/lab5_war_exploded/tourist/list">Tourist</a> <br>
+    <a href="/lab5_war_exploded/trip/list">Trip</a> <br>
 </body>
 </html>
