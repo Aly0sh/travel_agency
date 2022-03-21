@@ -1,0 +1,78 @@
+package org.example.controller;
+
+import org.example.dao.daoClasses.*;
+import org.example.models.Air_tickets;
+import org.example.models.Event_tickets;
+import org.example.models.Trip;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+@Controller
+@RequestMapping("/air-tickets-trips")
+public class AirTicketsTripController {
+    @Autowired
+    private tripDaoService tripDaoService;
+
+    @Autowired
+    private airTicketsDaoService airTicketsDaoService;
+
+    @Autowired
+    private airTicketsTripsDaoService airTicketsTripsDaoService;
+
+    private String name = "Air tickets trips";
+    private String url = "air-tickets-trips";
+    private String fileName = "airTicketsTrips";
+    private String redirect = "redirect:/" + url + "/list";
+
+    @RequestMapping("/list")
+    public String list(Model model){
+        model.addAttribute("name", name);
+        model.addAttribute("url", url);
+        model.addAttribute("list", airTicketsTripsDaoService.getAll());
+        return fileName + "List";
+    }
+
+    @RequestMapping("/add")
+    public String add(Model model){
+        model.addAttribute("name", name);
+        model.addAttribute("url", url);
+        model.addAttribute("airTickets", airTicketsDaoService.getAll());
+        model.addAttribute("trips", tripDaoService.getAll());
+        return fileName+"Create";
+    }
+
+    @RequestMapping("/create")
+    public String create(@RequestParam Long air_ticket,
+                         @RequestParam Long trip){
+        airTicketsTripsDaoService.create((Air_tickets) airTicketsDaoService.read(air_ticket), (Trip) tripDaoService.read(trip));
+        return redirect;
+    }
+
+    @RequestMapping("/delete/{id}")
+    public String delete(@PathVariable Long id){
+        airTicketsTripsDaoService.delete(id);
+        return redirect;
+    }
+
+    @RequestMapping("/update/{id}")
+    public String update(Model model, @PathVariable Long id){
+        model.addAttribute("name", name);
+        model.addAttribute("url", url);
+        model.addAttribute("airTickets", airTicketsDaoService.getAll());
+        model.addAttribute("trips", tripDaoService.getAll());
+        model.addAttribute("obj", airTicketsTripsDaoService.read(id));
+        return fileName + "Update";
+    }
+
+    @RequestMapping("do-update/{id}")
+    public String doUpdate(@PathVariable Long id,
+                           @RequestParam Long air_ticket,
+                           @RequestParam Long trip){
+        airTicketsTripsDaoService.update((Air_tickets) airTicketsDaoService.read(air_ticket), (Trip) tripDaoService.read(trip), id);
+        return redirect;
+    }
+}
