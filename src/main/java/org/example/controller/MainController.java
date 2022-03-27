@@ -10,7 +10,17 @@ public class MainController {
 
     @RequestMapping("/")
     public String homePage(Model model){
-        return "index";
+        return "home";
+    }
+
+    @RequestMapping("/login")
+    public String auth(Model model){
+        return "login";
+    }
+
+    @RequestMapping("/sign-up")
+    public String reg(Model model){
+        return "sign_up";
     }
 
 
