@@ -30,7 +30,7 @@
         <input class="form-control w-25 mx-auto" type="text" name="password">
     </p>
     <br>
-    <button type="submit" class="btn btn-success">Login</button>
+    <a type="submit" href="/lab5_war_exploded/list" class="btn btn-success">Login</a>
 </form>
 </body>
 </html>

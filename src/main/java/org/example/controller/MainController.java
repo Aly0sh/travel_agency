@@ -23,5 +23,10 @@ public class MainController {
         return "sign_up";
     }
 
+    @RequestMapping("/list")
+    public String index(Model model){
+        return "index";
+    }
+
 
 }
